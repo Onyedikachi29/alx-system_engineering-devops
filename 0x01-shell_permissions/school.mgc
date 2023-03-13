@@ -1,0 +1,5 @@
+#!/usr/local/bin/magic
+#
+# School data file types
+#
+0	string	SCHOOL	School data file
