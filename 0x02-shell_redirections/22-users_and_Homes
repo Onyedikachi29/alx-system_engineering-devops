@@ -1,0 +1,27 @@
+#!/bin/bash
+# Script to list all users and their home directories
+
+# Get the first field from the /etc/passwd file
+cut -d ':' -f1 /etc/passwd > user_list.txt
+
+# Get the sixth field from the /etc/passwd file
+cut -d ':' -f6 /etc/passwd > home_dirs.txt
+
+# Create an array of users
+users=( $(cat user_list.txt) )
+
+# Create an array of home directories
+homedirs=( $(cat home_dirs.txt) )
+
+# Print out the array in a formatted way
+printf "%-20s %s\n" "User" "Home Directory"
+
+# Loop through the arrays and print out the user and home directory
+for ((i=0; i<${#users[@]}; i++));
+do
+    printf "%-20s %s\n" "${users[$i]}" "${homedirs[$i]}"
+done
+
+# Remove the temporary files
+rm user_list.txt
+rm home_dirs.txt
